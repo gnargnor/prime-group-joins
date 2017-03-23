@@ -27,19 +27,22 @@ warehouse.id = warehouse_product.warehouse_id
 WHERE products.id = 6;
 
 --5
-/*SELECT SUM(orders.id) FROM customers.first_name, orders.id as orders_id FROM orders
-JOIN  addresses ON
-addresses.id = orders.address_id
+SELECT customers.first_name, customers.last_name, count(orders.address_id) FROM orders
+JOIN addresses ON
+orders.address_id = addresses.id
 JOIN customers ON
 addresses.customer_id = customers.id
-GROUP BY customers.first_name;*/
+GROUP BY customers.first_name, customers.last_name;
 
 --6
-
-
+SELECT count(customers.id) FROM customers;
 
 --7
-
-
+SELECT count(products.id) FROM products;
 
 --8
+SELECT products.description, count(warehouse_product.on_hand) FROM warehouse_product
+JOIN products ON
+products.id = 6
+GROUP BY products.description;
+--I know this one isn't right, but I'm not sure why yet.
